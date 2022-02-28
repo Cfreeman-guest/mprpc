@@ -1,0 +1,50 @@
+syntax = "proto3";
+
+
+package mprpc;
+
+option cc_generic_services = true;
+
+message ResultCode {
+    int32 errcode = 1;
+    bytes errmsg = 2;
+}
+
+//基本数据类型有 列表  映射表
+//登录请求类型
+message LoginRequest {
+    bytes name = 1;
+    bytes pwd = 2;
+}
+//登录响应类型
+message LoginResponse {
+    ResultCode result = 1;
+    bool success = 2;
+}
+message GetFriendListRequest {
+    uint32 userid = 1;
+}
+
+message User {
+    bytes name = 1;
+    uint32 age = 2;
+    enum Sex {
+        MAN = 0;
+        WOMAN = 1;
+    }
+    Sex sex = 3;
+}
+
+message GetFriendListResponse {
+    ResultCode result = 1;
+    repeated User friend_list = 2;//定义了一个列表类型
+}
+
+
+
+
+
+
+
+
+
